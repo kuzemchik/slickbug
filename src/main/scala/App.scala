@@ -57,8 +57,8 @@ object Repository {
 				a <- A
 			} yield a)
 			.innerJoin(B).on { case (a,b) => a.a1 === b.a1 }
-			.innerJoin(C).on { case ((a,b),c) => c.b1 === b.b1 }.map { case ((a,b),c) => (a,b,c) }
-			.innerJoin(D).on { case ((a,b,c),d) => c.c1 === d.c1 }.map { case ((a,b,c),d) => (a,b,c,d) }
+			.innerJoin(C).on { case ((a,b),c) => c.b1 === b.b1 }
+			.innerJoin(D).on { case (((a,b),c),d) => c.c1 === d.c1 }.map { case (((a,b),c),d) => (a,b,c,d) }
 	}
 	def getB1(filter: B.type => A.type => Column[Boolean]) = {
 		for {
